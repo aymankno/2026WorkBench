@@ -20,10 +20,8 @@ public class Robot extends TimedRobot {
   private XboxController controller;
   private final MalfunctionBoard dashboard = new MalfunctionBoard();
   public static SparkMaxConfig DefaultConfig = new SparkMaxConfig();    
-  private SparkMax motor;
-  private SparkMax leftMotor;
   private SparkMax rightMotor;
-  public static final int kmotorCanID = 2;
+  private SparkMax leftMotor;
   public static final int leftMotorCanID = 7;
   public static final int rightMotorCanID = 2;
 
@@ -38,10 +36,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    motor = new SparkMax(kmotorCanID, MotorType.kBrushless);
     leftMotor = new SparkMax(leftMotorCanID, MotorType.kBrushless);
+    leftMotor.configure(DefaultConfig, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
     rightMotor = new SparkMax(rightMotorCanID, MotorType.kBrushless);
-    motor.configure(DefaultConfig, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
+    rightMotor.configure(DefaultConfig, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
     controller = new XboxController(0);
   }
 
