@@ -24,8 +24,8 @@ public class Robot extends TimedRobot {
   private SparkMax leftMotor;
   private SparkMax rightMotor;
   public static final int kmotorCanID = 2;
-  public static final int leftMotorCanID = 3;
-  public static final int rightMotorCanID = 4;
+  public static final int leftMotorCanID = 7;
+  public static final int rightMotorCanID = 2;
 
   static {
     DefaultConfig.smartCurrentLimit(50);
@@ -60,16 +60,16 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     if (Math.abs(controller.getLeftY()) > 0.1) {
-      rightMotor.set(controller.getLeftY());
-    }
-    else {
-      rightMotor.stopMotor();
-    }
-    if (Math.abs(controller.getRightY()) > 0.1) {
-      leftMotor.set(controller.getRightY());
+      leftMotor.set(-controller.getLeftY());
     }
     else {
       leftMotor.stopMotor();
+    }
+    if (Math.abs(controller.getRightY()) > 0.1) {
+      rightMotor.set(controller.getRightY());
+    }
+    else {
+      rightMotor.stopMotor();
     }
   }
 
